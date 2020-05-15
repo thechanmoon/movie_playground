@@ -12,7 +12,7 @@ User.destroy_all
 puts "Your data is destroyed"
 
 10.times do
-    User.create(email: Faker::Internet.email, password: '1234', first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, imageurl: "https://dl.airtable.com/.attachmentThumbnails/1ee9b5b0a9245281bd7857835ef256d8/ebb993b2" )
+    User.create(username:Faker::Name.first_name.downcase, email: Faker::Internet.email, password: '1234', first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, imageurl: "https://dl.airtable.com/.attachmentThumbnails/1ee9b5b0a9245281bd7857835ef256d8/ebb993b2" )
 end
 
-put "User Data Created"
+puts "User Data Created"

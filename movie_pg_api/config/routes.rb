@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
+  resources :users
   # resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  # namespace :api do
-    # namespace :v1 do
-      post "/signup", to: "users#signup"
-      post "/login", to: "users#login"
-      post "/logout", to: "users#logout"
-      get "/autologin", to: "users#autologin"
-    # end
+  post "/signup", to: "users#create"
+  post "/login", to: "auth#login"
+  get "/autologin", to: "auth#autologin"
+  post "/logout", to: "auth#logout"
   # end
 
 end
