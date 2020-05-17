@@ -2,6 +2,7 @@ class AuthController < ApplicationController
   before_action :authenticated, only: [:autologin]
 
   def login
+    # byebug
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
