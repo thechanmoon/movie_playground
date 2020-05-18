@@ -3,6 +3,8 @@ class AuthController < ApplicationController
 
   def login
     # byebug
+    # upcoming = Tmdb::Movie.upcoming({region: 'us'})
+    # byebug
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id

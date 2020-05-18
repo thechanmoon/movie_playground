@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom'
 import NavBar from './NavBar'
+import ListingsContainer from './ListingsContainer';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import { API_URL } from '../constants'
@@ -17,6 +18,7 @@ class App extends React.Component {
       credentials: "include"
     })
       .then(r => {
+        console.log(r)
         if (!r.ok) {
           throw r
         }
@@ -54,9 +56,9 @@ class App extends React.Component {
           <Route path="/signup" render={routeProps => <SignupForm {...routeProps} handleUpdateCurrentUser={this.handleUpdateCurrentUser} />} />
           {this.state.currentUser && (
             <>
-              {/* <Route path="/listings/search/:city" render={routeProps => <ListingsContainer {...routeProps} />} />
-              <Route path="/listings/:id" render={routeProps => <ListingPage {...routeProps} />} />
-              <Route exact path="/listings" render={routeProps => <ListingsContainer {...routeProps} />} /> */}
+              {/* <Route path="/listings/search/:city" render={routeProps => <ListingsContainer {...routeProps} />} /> */}
+              {/* <Route path="/listings/:id" render={routeProps => <ListingPage {...routeProps} />} /> */}
+              <Route exact path="/listings" render={routeProps => <ListingsContainer {...routeProps} />} />
             </>
           )}
         </Switch>
