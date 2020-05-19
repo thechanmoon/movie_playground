@@ -3,7 +3,7 @@ import ListingCard from './ListingCard'
 // import ListingMap from './ListingMap'
 // import FilterBar from './FilterBar'
 // import Pager from './Pager'
-// import LoadingSpinner from './LoadingSpinner'
+import LoadingSpinner from './LoadingSpinner'
 
 import { API_URL } from '../constants'
 
@@ -15,7 +15,8 @@ class ListingsContainer extends React.Component {
     startIndex: 0,
     listings: [],
     showMap: true,
-    loaded: false
+    loaded: false,
+    searchTerm: ''
   }
 
   componentDidMount() {
@@ -25,11 +26,26 @@ class ListingsContainer extends React.Component {
   componentDidUpdate(prevProps) {
       // this.setState({ loaded: false })
       // this.fetchListings()
+      console.log(prevProps);
+      console.log(this.props);
+
+      if(prevProps.searchTerm !== this.props.searchTerm)
+      {
+        this.setState({searchTerm: this.props.searchTerm})
+        this.fetchListings(this.props.searchTerm)
+      }
   }
 
-  fetchListings() {
+  fetchListings(searchTerm='') {
+
+    console.log(this.props)
+    let url = API_URL + `/movies`;
+    if(searchTerm!='')
+    {
+      url = API_URL + `/search?query='${searchTerm}'`
+    }
     // const city = this.props.match.params.city || ""
-    fetch(API_URL + `/movies`, {
+    fetch(url, {
       credentials: "include"
     })
       .then(r => r.json())
@@ -76,6 +92,7 @@ class ListingsContainer extends React.Component {
   }
 
   showDetail = id => {
+    console.log('showDetail id = ' , id)
     this.props.history.push(`/listings/${id}`)
   }
 
@@ -92,9 +109,15 @@ class ListingsContainer extends React.Component {
     // return listings.slice(this.state.startIndex, this.state.startIndex + 15)
   }
 
+  getSearchedListing()
+  {
+
+  }
+
   getListingCards(listings) {
+    console.log(listings)
     return listings
-      .map(listing => <ListingCard listing={listing.table} />)
+      .map(listing => <ListingCard key={listing.table.id} listing={listing} showDetail={this.showDetail} handleUpdateListing={this.handleUpdateListing}/>)
   }
 
   // getListingCards(listings) {
@@ -103,9 +126,9 @@ class ListingsContainer extends React.Component {
   // }
 
   render() {
-    // if (!this.state.loaded) {
-    //   return <LoadingSpinner />
-    // }
+    if (!this.state.loaded) {
+      return <LoadingSpinner />
+    }
 
     // const filteredListings = this.getFilteredListings()
     // const pagedListings = this.getPagedListings(filteredListings)

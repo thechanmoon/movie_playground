@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { IMAGE_URL } from '../constants'
 class ListingCard extends React.Component {
 
   state = {
@@ -28,12 +28,12 @@ class ListingCard extends React.Component {
   render() {
     // destructuring the props object (we could also do the destructuring directly to the argument of the ListingCard fn)
     // const { image, name, city, rating, price } = this.props
-    const { poster_path } = this.props
+    const { id, poster_path } = this.props.listing.table
     // poster_path = "https://image.tmdb.org/t/p/w300"+poster_path;
-    let image = "https://image.tmdb.org/t/p/w300" + this.props.listing.poster_path;
-    console.log(this.props.listing.poster_path);
+    let image = IMAGE_URL + poster_path;
+    // console.log(this.props.listing.poster_path);
     return (
-      <div className="card">
+      <div className="card" onClick={() => this.props.showDetail(id)}>
         <div className="image" style={{ backgroundImage: `url(${image})` }}>
           {/* <button onClick={this.toggleFavorite} className="favorite">
             <span role="img" aria-label="heart">{this.state.favorite ? "♥️" : "♡"}</span>

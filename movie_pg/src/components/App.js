@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom'
 import NavBar from './NavBar'
 import ListingsContainer from './ListingsContainer';
+import ListingPage from './ListingPage';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import { API_URL } from '../constants'
@@ -10,7 +11,8 @@ import { API_URL } from '../constants'
 
 class App extends React.Component {
   state = {
-    currentUser: null
+    currentUser: null,
+    searchTerm: ""
   }
 
   componentDidMount() {
@@ -36,7 +38,8 @@ class App extends React.Component {
   }
 
   handleUpdateSearch = searchTerm => {
-    this.props.history.push(`/listings/search/${encodeURIComponent(searchTerm)}`)
+    // this.props.history.push(`/listings/search/${encodeURIComponent(searchTerm)}`)
+    this.setState({searchTerm: searchTerm})
   }
 
   render() {
@@ -57,8 +60,8 @@ class App extends React.Component {
           {this.state.currentUser && (
             <>
               {/* <Route path="/listings/search/:city" render={routeProps => <ListingsContainer {...routeProps} />} /> */}
-              {/* <Route path="/listings/:id" render={routeProps => <ListingPage {...routeProps} />} /> */}
-              <Route exact path="/listings" render={routeProps => <ListingsContainer {...routeProps} />} />
+              <Route path="/listings/:id" render={routeProps => <ListingPage {...routeProps} />} />
+              <Route exact path="/listings" render={routeProps => <ListingsContainer {...routeProps} searchTerm={this.state.searchTerm}/>} />
             </>
           )}
         </Switch>
