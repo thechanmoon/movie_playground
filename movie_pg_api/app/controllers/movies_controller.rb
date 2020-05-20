@@ -2,11 +2,21 @@ class MoviesController < ApplicationController
     # before_action :authenticated
     def index     
 
+		# byebug
+		if params[:query] === 'upcoming'
+			movies = Tmdb::Movie.upcoming({region: 'us'})
+		elsif params[:query] === 'now_playing'
+			movies = Tmdb::Movie.now_playing({region: 'us'})
+		elsif params[:query] === 'popular'
+			movies = Tmdb::Movie.popular({region: 'us'})	
+		else
+			movies = Tmdb::Movie.top_rated({region: 'us'})
+		end
+		# byebug
+		puts params
+		# puts movies
         # byebug
-		upcoming = Tmdb::Movie.popular({region: 'us'})
-		puts upcoming
-        # byebug
-        render json: upcoming.results;
+        render json: movies.results;
 
 
 		# Tmdb::Movie.upcoming

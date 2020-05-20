@@ -25,10 +25,16 @@ class ListingCard extends React.Component {
     // this.setState({ favorite: !this.state.favorite })
   }
 
+  sliecTitle = (string) =>
+  {
+    return (string.length <19 ? string : `${string.slice(0,18)}...`)
+  }
+
+
   render() {
     // destructuring the props object (we could also do the destructuring directly to the argument of the ListingCard fn)
     // const { image, name, city, rating, price } = this.props
-    const { id, poster_path } = this.props.listing.table
+    const { id, poster_path, title } = this.props.listing.table
     // poster_path = "https://image.tmdb.org/t/p/w300"+poster_path;
     let image = IMAGE_URL + poster_path;
     // console.log(this.props.listing.poster_path);
@@ -42,9 +48,11 @@ class ListingCard extends React.Component {
         {/* <div className="info">
           <span>{city}</span>
           <span>★ {rating}</span>
+        </div> */}
+        <div  className="info">
+        <h4 className="title">{this.sliecTitle(title)}</h4>
         </div>
-        <h4 className="title">{name}</h4>
-        <div className="price">
+        {/* <div className="price">
           <strong>${price}</strong>/month
         </div> */}
       </div>

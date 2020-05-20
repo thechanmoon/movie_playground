@@ -4,7 +4,8 @@ import { API_URL } from '../constants'
 
 class NavBar extends React.Component {
   state = {
-    searchTerm: ""
+    searchTerm: "",
+    indexTerm: "upcoming"
   }
 
   handleLogout = () => {
@@ -25,6 +26,13 @@ class NavBar extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     this.props.handleUpdateSearch(this.state.searchTerm)
+    // event.target.reset();
+  }
+
+  handleIndexSelectChange = event =>{
+    console.log(event.target.value);
+    this.setState({ indexTerm: event.target.value })
+    this.props.handleIndexSelectChange(event.target.value);
   }
 
   render() {
@@ -33,6 +41,14 @@ class NavBar extends React.Component {
         <Link to="/listings">
           <div className="logo" />
         </Link>
+
+        <select name = 'indexSelect' onChange = {this.handleIndexSelectChange} className="form-control">
+          <option value="upcoming">upcoming</option>
+          <option value="now_playing">now_playing</option>
+          <option value="popular">popular</option>
+          <option value="top_rated">now_playing</option>
+        </select>
+
         <form className="search" onSubmit={this.handleSubmit}>
           <input type="text" placeholder="Search movies..." value={this.state.searchTerm} onChange={this.handleChange} />
           <input type="submit" value="Search" />

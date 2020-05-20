@@ -1,7 +1,9 @@
 import React from 'react'
 import LoadingSpinner from './LoadingSpinner'
-// import ReviewForm from './ReviewForm'
-// import Review from './Review'
+import JournalForm from './JournalForm'
+import Journal from './Journal'
+import ReviewForm from './ReviewForm'
+import Review from './Review'
 import { API_URL, IMAGE_URL } from '../constants'
 
 class ListingPage extends React.Component {
@@ -57,32 +59,58 @@ class ListingPage extends React.Component {
       return <LoadingSpinner />
     }
 
-    const { favorite = false, reviews, city, rating, name, price, id, poster_path } = this.state.listing.table
+    const { id, poster_path, title, overview, release_date, runtime, reviews} = this.state.listing.table
 
     let image = IMAGE_URL + poster_path;
 
     return (
       <div className="detail">
-        <div className="image" style={{ backgroundImage: `url(${image})` }}>
-          {/* <button onClick={this.toggleFavorite} className="favorite">
-            <span role="img" aria-label="heart">{favorite ? "♥️" : "♡"}</span>
-          </button>
+        <div className='container'>
+          
+          <div className="image" style={{ backgroundImage: `url(${image})` }}>
+            {/* <button onClick={this.toggleFavorite} className="favorite">
+              <span role="img" aria-label="heart">{favorite ? "♥️" : "♡"}</span>
+            </button> */}
+          </div>
+
+
+          <div className="detail-info">
+            <h1 className="title">Title : {title}</h1>
+            
+            <span>
+            <h2> OverView : {overview}</h2>
+            </span>  
+
+            <span>
+            <h2> Release date : {release_date}</h2>
+            <h2> Runtime : {runtime} minutes</h2>
+            </span>  
+
+          </div>
+      </div>
+      
+      <div className="detail">
+        <div className='container'>
+          <div className="journals">
+            {/* {{journals.map(journal => <Journal key={journal.id} {...journal} />)} } */}
+            { <JournalForm listingId={id} handleUpdateListing={this.handleUpdateListing} /> }
+          </div>
+
+          <div className="reviews">
+              {/* <h4>
+                <span className="rating">★</span>
+                &nbsp;
+                <span>{rating} ({reviews.length} reviews)</span>
+                <span>{5} ({5} reviews)</span>
+              </h4> */}
+              {/* {{reviews.map(review => <Review key={review.id} {...review} />)} } */}
+            </div>
+            { <ReviewForm listingId={id} handleUpdateListing={this.handleUpdateListing} /> }
+          </div>
+
+
+
         </div>
-        <h2 className="title">{name}</h2>
-        <div className="info">
-          <span>{city}</span>
-          &nbsp;·&nbsp;
-          <strong>${price}</strong>/month */}
-        </div>
-        {/* <div className="reviews">
-          <h4>
-            <span className="rating">★</span>
-            &nbsp;
-            <span>{rating} ({reviews.length} reviews)</span>
-          </h4>
-          {{reviews.map(review => <Review key={review.id} {...review} />)} }
-        </div>
-        { <ReviewForm listingId={id} handleUpdateListing={this.handleUpdateListing} /> } */}
       </div>
     )
   }

@@ -8,11 +8,17 @@ import SignupForm from './SignupForm';
 import { API_URL } from '../constants'
 //import logo from './logo.svg';
 //import './App.css';
+/*
+import { useHistory } from "react-router-dom";
+const history = useHistory()
+history.push("/login")
+*/
 
 class App extends React.Component {
   state = {
     currentUser: null,
-    searchTerm: ""
+    searchTerm: "",
+    indexTerm:""
   }
 
   componentDidMount() {
@@ -42,6 +48,10 @@ class App extends React.Component {
     this.setState({searchTerm: searchTerm})
   }
 
+  handleIndexSelectChange = indexTerm =>{
+    this.setState({indexTerm: indexTerm})
+  } 
+
   render() {
     console.log("In app", this.state)
 
@@ -50,6 +60,7 @@ class App extends React.Component {
       <NavBar
         handleUpdateCurrentUser={this.handleUpdateCurrentUser}
         handleUpdateSearch={this.handleUpdateSearch}
+        handleIndexSelectChange={this.handleIndexSelectChange}
         currentUser={this.state.currentUser}
       />
       <main>
@@ -61,7 +72,7 @@ class App extends React.Component {
             <>
               {/* <Route path="/listings/search/:city" render={routeProps => <ListingsContainer {...routeProps} />} /> */}
               <Route path="/listings/:id" render={routeProps => <ListingPage {...routeProps} />} />
-              <Route exact path="/listings" render={routeProps => <ListingsContainer {...routeProps} searchTerm={this.state.searchTerm}/>} />
+              <Route exact path="/listings" render={routeProps => <ListingsContainer {...routeProps} searchTerm={this.state.searchTerm} indexTerm={this.state.indexTerm}/>} />
             </>
           )}
         </Switch>

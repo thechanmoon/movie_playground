@@ -189,6 +189,19 @@ main {
   align-items: flex-start;
 }
 
+.detail .container {
+  display: flex;
+}
+
+.detail .container .detail-info {
+  margin-top: 10px;
+  /* margin-bottom: 10px;
+  margin-right: 10px; */
+  margin-left: 10px;
+  width: 50%;
+  /* width: 450px; */
+}
+
 /* ListingPage */
 .detail .image {
   position: relative;
@@ -198,12 +211,31 @@ main {
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
+
+  /* margin-top: 20px; */
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+
+  /* margin-right: 150px; */
+  /* position: relative;
+  border-radius: 4px;
+  width: 900px;
+  height:  1200px;
+  padding-top: 66.6667%;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat; */
 }
 
 .detail .info {
   border-top: 1px solid var(--gray);
   border-bottom: 1px solid var(--gray);
   padding: 1rem 0;
+}
+
+.detail .journals {
+  border-bottom: 1px solid var(--gray);
 }
 
 .detail .reviews {

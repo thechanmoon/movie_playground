@@ -16,7 +16,8 @@ class ListingsContainer extends React.Component {
     listings: [],
     showMap: true,
     loaded: false,
-    searchTerm: ''
+    searchTerm: '',
+    indexTerm: ''
   }
 
   componentDidMount() {
@@ -32,18 +33,26 @@ class ListingsContainer extends React.Component {
       if(prevProps.searchTerm !== this.props.searchTerm)
       {
         this.setState({searchTerm: this.props.searchTerm})
-        this.fetchListings(this.props.searchTerm)
+        this.fetchSearchListings(this.props.searchTerm)
+      }else if(prevProps.indexTerm !== this.props.indexTerm){
+        this.setState({ indexTerm: this.props.indexTerm})
+        this.fetchListings(this.props.indexTerm)
       }
   }
 
-  fetchListings(searchTerm='') {
+  fetchListings(indexTerm = '') {
 
     console.log(this.props)
-    let url = API_URL + `/movies`;
-    if(searchTerm!='')
-    {
-      url = API_URL + `/search?query='${searchTerm}'`
-    }
+    console.log('indexTerm : ', indexTerm)
+    // console.log('searchTermv: ', searchTerm)
+    let url = API_URL + `/movies?query=${indexTerm}`;
+
+    // if(searchTerm!='')
+    // {
+    //   url = API_URL + `/search?query='${searchTerm}'`
+    // }
+
+    console.log(url)
     // const city = this.props.match.params.city || ""
     fetch(url, {
       credentials: "include"
@@ -54,7 +63,36 @@ class ListingsContainer extends React.Component {
         this.setState({
           listings: listings,
           startIndex: 0,
-          loaded: true
+          loaded: true,
+        })
+      })
+  }
+
+  fetchSearchListings(searchTerm='') {
+
+    console.log(this.props)
+    // console.log('indexTerm : ', indexTerm)
+    console.log('searchTermv: ', searchTerm)
+    // let url = API_URL + `/movies?query=${indexTerm}`;
+
+    // if(searchTerm!='')
+    // {
+    let url = API_URL + `/search?query='${searchTerm}'`
+    // }
+
+    console.log(url)
+    // const city = this.props.match.params.city || ""
+    fetch(url, {
+      credentials: "include"
+    })
+      .then(r => r.json())
+      .then(listings => {
+        console.log(listings)
+        this.setState({
+          listings: listings,
+          startIndex: 0,
+          loaded: true,
+          searchTerm: ''
         })
       })
   }
