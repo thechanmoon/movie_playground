@@ -9,4 +9,6 @@ class Movie < ApplicationRecord
     has_many :users, through: :favorites
 
     has_many :trivia
+
+    validates :tmdb_id, presence: true, uniqueness: true
 end

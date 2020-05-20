@@ -10,7 +10,8 @@ class ListingPage extends React.Component {
 
   state = {
     listing: null,
-    loaded: false
+    loaded: false,
+    reviews: []
   }
 
   componentDidMount() {
@@ -23,6 +24,22 @@ class ListingPage extends React.Component {
         console.log(listing)
         this.setState({
           listing: listing,
+          loaded: true
+        })
+        this.fetchSearchListings(listing.table.id);
+      })
+  }
+
+  fetchSearchListings = tmdb_id =>
+  {
+    fetch(API_URL + `/reviews/${tmdb_id}`, {
+      credentials: "include"
+    })
+      .then(r => r.json())
+      .then(reviews => {
+        console.log(reviews)
+        this.setState({
+          reviews: reviews,
           loaded: true
         })
       })
@@ -105,7 +122,7 @@ class ListingPage extends React.Component {
               </h4> */}
               {/* {{reviews.map(review => <Review key={review.id} {...review} />)} } */}
             </div>
-            { <ReviewForm listingId={id} handleUpdateListing={this.handleUpdateListing} /> }
+            { <ReviewForm listingId={id} currentMovie = {this.state.listing.table} handleUpdateListing={this.handleUpdateListing} /> }
           </div>
 
 

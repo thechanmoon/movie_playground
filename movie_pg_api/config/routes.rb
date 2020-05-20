@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # resources :trivia
   # resources :favorites
-  # resources :reviews
+  resources :reviews
   # resources :journals
   resources :movies
   # resources :users

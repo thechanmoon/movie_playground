@@ -4,10 +4,16 @@ import { API_URL } from '../constants'
 const initialState = {
   comment: "",
   rating: 1,
+  currentMovie: {}
 }
 
 class ReviewForm extends React.Component {
   state = initialState
+
+  componentDidMount()
+  {
+    this.setState({currentMovie: this.props.currentMovie})
+  }
 
   handleInputChange = event => {
     const inputName = event.target.name
@@ -19,19 +25,43 @@ class ReviewForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    fetch(API_URL + `/listings/${this.props.listingId}/reviews`, {
+    // fetch(API_URL + `/listings/${this.props.listingId}/reviews`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   credentials: "include",
+    //   body: JSON.stringify(this.state)
+    // })
+    //   .then(r => r.json())
+    //   .then(updatedListing => {
+    //     this.props.handleUpdateListing(updatedListing)
+    //     this.setState(initialState)
+    //   })
+
+      const data = {
+        title: this.state.currentMovie.title,
+        poster_path: this.state.currentMovie.poster_path,
+        overview: this.state.currentMovie.overview,
+        tmdb_id: this.state.currentMovie.id,
+        comment: this.state.comment,
+        rating: this.state.rating
+      }
+
+      fetch(API_URL + `/reviews`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       credentials: "include",
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(data)
     })
       .then(r => r.json())
       .then(updatedListing => {
-        this.props.handleUpdateListing(updatedListing)
-        this.setState(initialState)
+        // this.props.handleUpdateListing(updatedListing)
+        // this.setState(initialState)
       })
+
   }
 
   render() {
