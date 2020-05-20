@@ -46,7 +46,7 @@ class NavBar extends React.Component {
           <option value="upcoming">upcoming</option>
           <option value="now_playing">now_playing</option>
           <option value="popular">popular</option>
-          <option value="top_rated">now_playing</option>
+          <option value="top_rated">top_rated</option>
         </select>
 
         <form className="search" onSubmit={this.handleSubmit}>

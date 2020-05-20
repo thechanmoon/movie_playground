@@ -3,14 +3,14 @@ class MoviesController < ApplicationController
     def index     
 
 		# byebug
-		if params[:query] === 'upcoming'
-			movies = Tmdb::Movie.upcoming({region: 'us'})
-		elsif params[:query] === 'now_playing'
+		if params[:query] === 'now_playing'
 			movies = Tmdb::Movie.now_playing({region: 'us'})
 		elsif params[:query] === 'popular'
 			movies = Tmdb::Movie.popular({region: 'us'})	
-		else
+		elsif params[:query] === 'top_rated'
 			movies = Tmdb::Movie.top_rated({region: 'us'})
+		else #params[:query] === 'upcoming'
+			movies = Tmdb::Movie.upcoming({region: 'us'})
 		end
 		# byebug
 		puts params
