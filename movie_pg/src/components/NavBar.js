@@ -26,7 +26,8 @@ class NavBar extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     this.props.handleUpdateSearch(this.state.searchTerm)
-    // event.target.reset();
+    this.setState({searchTerm:''})
+    // debugger
   }
 
   handleIndexSelectChange = event =>{
@@ -50,7 +51,7 @@ class NavBar extends React.Component {
         </select>
 
         <form className="search" onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Search movies..." value={this.state.searchTerm} onChange={this.handleChange} />
+          <input type="text" name = 'searchInput' placeholder="Search movies..." value={this.state.searchTerm} onChange={this.handleChange} />
           <input type="submit" value="Search" />
         </form>
         <div className="actions">
