@@ -1,9 +1,23 @@
 Rails.application.routes.draw do
   # resources :trivia
   # resources :favorites
-  resources :reviews
+  # resources :reviews
   # resources :journals
-  resources :movies
+  # resources :movies
+  
+  # resources :movies, only: [:create :index, :show] do
+  #   resources :reviews, only: [:create]
+  #   resources :favorites, only: [:create]
+  #   delete "/favorites/remove", to: "favorites#destroy"
+  # end
+  
+  resources :movies do
+    resources :reviews
+    resources :favorites
+    delete "/favorites/remove", to: "favorites#destroy"
+  end
+
+  
   # resources :users
   # resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
