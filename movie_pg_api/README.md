@@ -26,6 +26,8 @@ rails g resource favorite user:belongs_to movie:belongs_to --no-test-framework
 
 rails g resource trivia text user_id movie:belongs_to --no-test-framework
 
+rails g migration add_tmdb_id_to_review tmdb_id:integer
+rails g migration add_tmdb_id_to_journal tmdb_id:integer
 
 rails d resource User username email first_name last_name password_digest imageurl --no-test-framework
 

@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
         # byebug
         #byebug
         review = Review.create(comment: params[:comment], rating: params[:rating], movie_id: movie.id, user_id: current_user.id)
-        byebug
+        # byebug
         if movie.valid? && review.valid?
             render json: { movie: movie, review: review }
         else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_213601) do
+ActiveRecord::Schema.define(version: 2020_05_20_165634) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_213601) do
     t.integer "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "tmdb_id"
     t.index ["movie_id"], name: "index_journals_on_movie_id"
     t.index ["user_id"], name: "index_journals_on_user_id"
   end
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_213601) do
     t.integer "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "tmdb_id"
     t.index ["movie_id"], name: "index_reviews_on_movie_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
