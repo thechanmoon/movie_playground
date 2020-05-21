@@ -39,29 +39,34 @@ class ReviewForm extends React.Component {
     //     this.setState(initialState)
     //   })
 
-      const data = {
-        title: this.state.currentMovie.title,
-        poster_path: this.state.currentMovie.poster_path,
-        overview: this.state.currentMovie.overview,
-        tmdb_id: this.state.currentMovie.id,
-        comment: this.state.comment,
-        rating: this.state.rating
-      }
+    this.fetchCreateMovie()
 
-      fetch(API_URL + `/reviews`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include",
-      body: JSON.stringify(data)
+  }
+
+  fetchCreateMovie()
+  {
+    const data = {
+      title: this.state.currentMovie.title,
+      poster_path: this.state.currentMovie.poster_path,
+      overview: this.state.currentMovie.overview,
+      tmdb_id: this.state.currentMovie.id,
+      // comment: this.state.comment,
+      // rating: this.state.rating
+    }
+
+    fetch(API_URL + `/movies`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "include",
+    body: JSON.stringify(data)
+  })
+    .then(r => r.json())
+    .then(updatedListing => {
+      // this.props.handleUpdateListing(updatedListing)
+      // this.setState(initialState)
     })
-      .then(r => r.json())
-      .then(updatedListing => {
-        // this.props.handleUpdateListing(updatedListing)
-        // this.setState(initialState)
-      })
-
   }
 
   render() {

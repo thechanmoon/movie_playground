@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     end
 
     def create
-		# byebug
+		byebug
 		movie = Movie.find_or_create_by(create_review_params)
 		# if movie.valid?
 		#   render json: movie
