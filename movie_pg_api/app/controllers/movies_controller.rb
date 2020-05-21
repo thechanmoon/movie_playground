@@ -66,13 +66,15 @@ class MoviesController < ApplicationController
 	end
 
 	def create
-		# byebug
-		moive = Movie.create(create_moive_params)
+
+		moive = Movie.find_or_create_by(create_moive_params)
 		if moive.valid?
 		  render json: moive
 		else
 		  render json: { errors: moive.errors.full_messages }, status: 403
 		end
+
+		byebug
 	end
 
 	# For use with infinite scroll
