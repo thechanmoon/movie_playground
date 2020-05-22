@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   
   resources :movies do
     resources :reviews
-    resources :favorites
+    # search "/reviews/search", to: "reviews/search"
+    resources :favorites    
     delete "/favorites/remove", to: "favorites#destroy"
   end
 
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
   
   # get 'movies/:id', to: 'movies#show'
   get 'search', to: 'movies#search'
+  get '/reviews/search', to: 'reviews#search'
   # get 'filter', to: 'movies#filter'
   
   # end

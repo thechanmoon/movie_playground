@@ -43,7 +43,7 @@ class NavBar extends React.Component {
           <div className="logo" />
         </Link>
 
-        <select name = 'indexSelect' onChange = {this.handleIndexSelectChange} className="form-control">
+        <select name = 'indexSelect' onChange = {this.handleIndexSelectChange}>
           <option value="upcoming">upcoming</option>
           <option value="now_playing">now_playing</option>
           <option value="popular">popular</option>
@@ -52,7 +52,9 @@ class NavBar extends React.Component {
 
         <form className="search" onSubmit={this.handleSubmit}>
           <input type="text" name = 'searchInput' placeholder="Search movies..." value={this.state.searchTerm} onChange={this.handleChange} />
-          <input type="submit" value="Search" />
+          {/* <input type="submit" value="Search" /> */}
+          {/* <button style = {{margin:"20px"}} className = "btn btn-primary">Search</button> */}
+          <button className = "btn btn-primary">Search</button>
         </form>
         <div className="actions">
           {this.props.currentUser ? (

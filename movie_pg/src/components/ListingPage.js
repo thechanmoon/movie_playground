@@ -5,13 +5,15 @@ import Journal from './Journal'
 import ReviewForm from './ReviewForm'
 import Review from './Review'
 import { API_URL, IMAGE_URL } from '../constants'
+import ReactPlayer from 'react-player';
 
 class ListingPage extends React.Component {
 
   state = {
     listing: null,
     loaded: false,
-    reviews: []
+    reviews: [],
+    video_url: ''
   }
 
   componentDidMount() {
@@ -26,13 +28,25 @@ class ListingPage extends React.Component {
           listing: listing,
           loaded: true
         })
-        this.fetchSearchListings(listing.table.id);
+        console.log(listing);    
+        console.log(listing.id);       
+        this.fetchSearchReviews(listing.id);
+         this.setState({video_url: 'https://www.youtube.com/watch?v=1FgHYjtymQY' }) 
+        //this.setState({video_url: 'https://www.youtube.com/watch?v=Z6Lt8umAStg'})
+        // this.setState({video_url: 'https://www.youtube.com/watch?v=4RI0QvaGoiI&list=PL20cj4jGpvsBAEnT7BfBwZmLwEzlwZTYa&index=2' }) // notting hill
+        // https://www.youtube.com/watch?v=0diCvgWv_ng // once upon a time in america
+        // https://www.youtube.com/watch?v=1FgHYjtymQY // // once upon a time in america full movie
+        // https://www.youtube.com/watch?v=Z6Lt8umAStg// conspiracy
+        
       })
   }
 
-  fetchSearchListings = tmdb_id =>
+  fetchSearchReviews = movie_id =>
   {
-    fetch(API_URL + `/reviews/${tmdb_id}`, {
+    console.log(movie_id);
+    let url = API_URL + `/movies/${movie_id}/reviews/search`
+    console.log(url)
+    fetch(url, {
       credentials: "include"
     })
       .then(r => r.json())
@@ -102,7 +116,8 @@ class ListingPage extends React.Component {
             <h2> Release date : {release_date}</h2>
             <h2> Runtime : {runtime} minutes</h2>
             </span>  
-
+            {/* <ReactPlayer url="https://www.youtube.com/watch?v=k71hjl3zWsA" controls={true}/> */}
+            <ReactPlayer url={this.state.video_url} controls={true}/>
           </div>
       </div>
       

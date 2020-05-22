@@ -56,7 +56,18 @@ class MoviesController < ApplicationController
 	def show
 		# @movie = Tmupdb::Movie.detail(params[:id])
 		# @images = Tmdb::Movie.posters(params[:id])
+
+		# //movie = Tmdb::Movie.videos(params[:id])
+
+		# p movie
+		
 		movie = Tmdb::Movie.detail(params[:id])
+		
+		# p '==========='
+
+		# p movie
+
+		# byebug
 		render json: movie
 		# movie = Movie.find(params[:id])
 		# byebug
@@ -67,11 +78,11 @@ class MoviesController < ApplicationController
 
 	def create
 
-		moive = Movie.find_or_create_by(create_moive_params)
-		if moive.valid?
-		  render json: moive
+		movie = Movie.find_or_create_by(create_movie_params)
+		if movie.valid?
+		  render json: movie
 		else
-		  render json: { errors: moive.errors.full_messages }, status: 403
+		  render json: { errors: movie.errors.full_messages }, status: 403
 		end
 
 		byebug
@@ -91,12 +102,13 @@ class MoviesController < ApplicationController
 	def search
 		# byebug
 		search = Tmdb::Search.movie(params[:query])
+		p search
 		render json: search.results
 	end
 
 	private
   
-	def create_moive_params
+	def create_movie_params
 		params.permit(:title, :poster_path, :overview, :tmdb_id)
 	end
 end

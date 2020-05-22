@@ -1,8 +1,11 @@
 class ReviewsController < ApplicationController
     # before_action :authenticated
     def index
+        # byebug
         reviews = Review.all
-		render json: reviews;
+        #reviews = Review.find_by(user_id: current_user.id)
+        #reviews = Review.find_by(movie_id: params[:movie_id])
+        render json: reviews;
     end
 
     def show
@@ -29,6 +32,14 @@ class ReviewsController < ApplicationController
             render json: { errors: review.errors.full_messages }, status: 403
         end
     end
+    
+    def search
+        byebug
+        reviews = Review.find_by(movie_id: params[:movie_id])
+        render json: reviews;
+    end
+
+    private
     
     def create_review_params
 		params.permit(:title, :poster_path, :overview, :tmdb_id, :review)
