@@ -24,20 +24,24 @@ class ListingPage extends React.Component {
       .then(r => r.json())
       .then(listing => {
         console.log(listing)
-        this.setState({
-          listing: listing,
-          loaded: true
-        })
-        console.log(listing);    
-        console.log(listing.id);       
-        this.fetchSearchReviews(listing.id);
-         this.setState({video_url: 'https://www.youtube.com/watch?v=1FgHYjtymQY' }) 
+
+
+        // this.setState({video_url: 'https://www.youtube.com/watch?v=1FgHYjtymQY' }) 
         //this.setState({video_url: 'https://www.youtube.com/watch?v=Z6Lt8umAStg'})
         // this.setState({video_url: 'https://www.youtube.com/watch?v=4RI0QvaGoiI&list=PL20cj4jGpvsBAEnT7BfBwZmLwEzlwZTYa&index=2' }) // notting hill
         // https://www.youtube.com/watch?v=0diCvgWv_ng // once upon a time in america
         // https://www.youtube.com/watch?v=1FgHYjtymQY // // once upon a time in america full movie
         // https://www.youtube.com/watch?v=Z6Lt8umAStg// conspiracy
-        
+
+
+        this.setState({
+          listing: listing,
+          loaded: true,
+          video_url: listing.videos.length>0?'https://www.youtube.com/watch?v='+listing.videos[0] : ''
+        })
+        console.log(listing);    
+        console.log(listing.id);       
+        this.fetchSearchReviews(listing.id);        
       })
   }
 
@@ -97,13 +101,24 @@ class ListingPage extends React.Component {
     return (
       <div className="detail">
         <div className='container'>
-          
+          <div>
           <div className="image" style={{ backgroundImage: `url(${image})` }}>
             {/* <button onClick={this.toggleFavorite} className="favorite">
               <span role="img" aria-label="heart">{favorite ? "♥️" : "♡"}</span>
             </button> */}
           </div>
+          <div>
+          <h2> Genre: </h2>
+            <ul className="casts">
+              {genres.map((genre, index) => <li key={index}>{genre.table.name}</li>)}
+            </ul>
 
+            <h2>Casts: </h2>
+            <ul className="casts">
+              {casts.map((cast, index) => <li key={index}>{cast}</li>)}
+            </ul>
+          </div>
+          </div>  
 
           <div className="detail-info">
             <h1 className="title">Title : {title}</h1>
@@ -118,17 +133,11 @@ class ListingPage extends React.Component {
             <h2> Vote Average : {vote_average} </h2>
             <h2> Revenue : {revenue.toLocaleString('en')} </h2>
             {/* Genre: <span className="font-weight-bold">{genres}</span>{' '} */}
-            <ul className="casts">
-              {genres.map((genre, index) => <li key={index}>{genre.table.name}</li>)}
-            </ul>
-
-            Casts:
-            <ul className="casts">
-              {casts.map((cast, index) => <li key={index}>{cast}</li>)}
-            </ul>
-            </span>  
             {/* <ReactPlayer url="https://www.youtube.com/watch?v=k71hjl3zWsA" controls={true}/> */}
             <ReactPlayer url={this.state.video_url} controls={true}/>
+
+            </span>  
+
           </div>
       </div>
       

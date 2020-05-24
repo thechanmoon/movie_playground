@@ -35,6 +35,10 @@ class MovieDbService
     # cast_and_ratings
   end
 
+  def video(id)
+    @tmdb.videos(id)
+  end
+
   def find(keyword)
     @tmdb.find(keyword) if keyword
   end
@@ -42,10 +46,18 @@ class MovieDbService
   private
 
   def casts_for(movie)
-    # byebug
-    movie.to_h.merge(
+    
+    newMovie = movie.to_h.merge(
+      ('videos') => @tmdb.videos(movie['id']).map { |video| video['key'] }
+    )
+
+    #  byebug
+    newMovie.to_h.merge(
       ('casts') => @tmdb.cast(movie['id']).map { |cast| cast['name'] }
     )
+
+    # byebug
+
   end
 
   # def cast_and_ratings
