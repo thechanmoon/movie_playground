@@ -4,16 +4,20 @@ class MoviesController < ApplicationController
 
 		# byebug
 		if params[:query] === 'now_playing'
-			movies = Tmdb::Movie.now_playing({region: 'us'})
+			# movies = Tmdb::Movie.now_playing({region: 'us'})
+			movies = movie_service.now_playing
 		elsif params[:query] === 'popular'
-			movies = Tmdb::Movie.popular({region: 'us'})	
+			# movies = Tmdb::Movie.popular({region: 'us'})	
+			movies = movie_service.popular
 		elsif params[:query] === 'top_rated'
-			movies = Tmdb::Movie.top_rated({region: 'us'})
+			# movies = Tmdb::Movie.top_rated({region: 'us'})
+			movies = movie_service.top_rated
 		else #params[:query] === 'upcoming'
-			movies = Tmdb::Movie.upcoming({region: 'us'})
+			# movies = Tmdb::Movie.upcoming({region: 'us'})
+			movies = movie_service.upcoming
 		end
 		# byebug
-		puts params
+		# puts params
 		# puts movies
         # byebug
         render json: movies.results;
@@ -61,8 +65,9 @@ class MoviesController < ApplicationController
 
 		# p movie
 		
-		movie = Tmdb::Movie.detail(params[:id])
-		
+		# movie = Tmdb::Movie.detail(params[:id])
+		movie = movie_service.movie_detail(params[:id])
+		# byebug
 		# p '==========='
 
 		# p movie
@@ -104,6 +109,10 @@ class MoviesController < ApplicationController
 		search = Tmdb::Search.movie(params[:query])
 		p search
 		render json: search.results
+	end
+
+	def movie_service
+		movie_service ||= MovieDbService.new
 	end
 
 	private

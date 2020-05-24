@@ -37,6 +37,7 @@ end
 gem 'rack-cors'
 
 gem 'themoviedb-api'
+gem 'imdb', '~> 0.8'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

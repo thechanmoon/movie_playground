@@ -90,10 +90,10 @@ class ListingPage extends React.Component {
       return <LoadingSpinner />
     }
 
-    const { id, poster_path, title, overview, release_date, runtime, reviews} = this.state.listing.table
+    const { id, poster_path, title, overview, release_date, runtime, vote_average, revenue, genres, casts,reviews} = this.state.listing
 
     let image = IMAGE_URL + poster_path;
-
+    // console.log(video_url)
     return (
       <div className="detail">
         <div className='container'>
@@ -115,6 +115,17 @@ class ListingPage extends React.Component {
             <span>
             <h2> Release date : {release_date}</h2>
             <h2> Runtime : {runtime} minutes</h2>
+            <h2> Vote Average : {vote_average} </h2>
+            <h2> Revenue : {revenue.toLocaleString('en')} </h2>
+            {/* Genre: <span className="font-weight-bold">{genres}</span>{' '} */}
+            <ul className="casts">
+              {genres.map((genre, index) => <li key={index}>{genre.table.name}</li>)}
+            </ul>
+
+            Casts:
+            <ul className="casts">
+              {casts.map((cast, index) => <li key={index}>{cast}</li>)}
+            </ul>
             </span>  
             {/* <ReactPlayer url="https://www.youtube.com/watch?v=k71hjl3zWsA" controls={true}/> */}
             <ReactPlayer url={this.state.video_url} controls={true}/>

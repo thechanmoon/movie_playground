@@ -257,6 +257,12 @@ main {
   color: #888;
 }
 
+.casts {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+}
+
 /* Forms */
 .form-container {
   margin: 1rem auto;
