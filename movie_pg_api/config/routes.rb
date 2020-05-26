@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     delete "/favorites/remove", to: "favorites#destroy"
   end
 
+  resources :api
+
   
   # resources :users
   # resources :users
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
   post "/logout", to: "auth#logout"
   
   # get 'movies/:id', to: 'movies#show'
-  get 'search', to: 'movies#search'
+  get 'search', to: 'api#search'
   get '/reviews/search', to: 'reviews#search'
   # get 'filter', to: 'movies#filter'
   

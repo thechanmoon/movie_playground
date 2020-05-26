@@ -5,7 +5,7 @@ import { API_URL } from '../constants'
 class NavBar extends React.Component {
   state = {
     searchTerm: "",
-    indexTerm: "upcoming"
+    indexTerm: "popular"
   }
 
   handleLogout = () => {
@@ -44,9 +44,9 @@ class NavBar extends React.Component {
         </Link>
 
         <select name = 'indexSelect' onChange = {this.handleIndexSelectChange}>
+          <option value="popular">popular</option>
           <option value="upcoming">upcoming</option>
           <option value="now_playing">now_playing</option>
-          <option value="popular">popular</option>
           <option value="top_rated">top_rated</option>
         </select>
 

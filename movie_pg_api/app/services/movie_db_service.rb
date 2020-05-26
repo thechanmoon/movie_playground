@@ -59,18 +59,4 @@ class MovieDbService
     # byebug
 
   end
-
-  # def cast_and_ratings
-  #   # byebug
-  #   @imdb_id = @movie['imdb_id'][2..-1] # need to remove prefix('tt') in imdb_id
-  #   byebug
-  #   @movie.merge(
-  #     'casts' => imdb.cast_members,
-  #     'rating' => imdb.rating
-  #   )
-  # end
-
-  def imdb
-    @imdb ||= Imdb::Movie.new(@imdb_id)
-  end
 end

@@ -1,5 +1,5 @@
 class MovieSerializer < ActiveModel::Serializer
-  attributes :id, :username, :title, :overview, :poster_path, :tmdb_id, 
+  attributes :id, :username, :title, :overview, :poster_path, :tmdb_id
 end
 
 # class MovieSerializer < ActiveModel::Serializer

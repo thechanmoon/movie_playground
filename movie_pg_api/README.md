@@ -31,6 +31,7 @@ rails d resource User username email first_name last_name password_digest imageu
 
 rails d resource journal title text user_id movie_id --no-test-framework
 
+rails g controller api --no-test-framework
 
 <!-- rails g scaffold User username email first_name last_name password_digest imageurl --no-test-framework -->
 

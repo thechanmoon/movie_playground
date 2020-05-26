@@ -45,7 +45,7 @@ class ListingsContainer extends React.Component {
     console.log(this.props)
     console.log('indexTerm : ', indexTerm)
     // console.log('searchTermv: ', searchTerm)
-    let url = API_URL + `/movies?query=${indexTerm}`;
+    let url = API_URL + `/api?query=${indexTerm}`;
 
     // if(searchTerm!='')
     // {

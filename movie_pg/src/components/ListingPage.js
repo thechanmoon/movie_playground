@@ -18,7 +18,7 @@ class ListingPage extends React.Component {
 
   componentDidMount() {
     console.log('ListingPage componentDidMount');
-    fetch(API_URL + `/movies/${this.props.match.params.id}`, {
+    fetch(API_URL + `/api/${this.props.match.params.id}`, {
       credentials: "include"
     })
       .then(r => r.json())
@@ -37,7 +37,7 @@ class ListingPage extends React.Component {
         this.setState({
           listing: listing,
           loaded: true,
-          video_url: listing.videos.length>0?'https://www.youtube.com/watch?v='+listing.videos[0] : ''
+          video_url: listing.table.videos && listing.table.videos.length>0?'https://www.youtube.com/watch?v='+listing.table.videos[0] : ''
         })
         console.log(listing);    
         console.log(listing.id);       
@@ -94,8 +94,8 @@ class ListingPage extends React.Component {
       return <LoadingSpinner />
     }
 
-    const { id, poster_path, title, overview, release_date, runtime, vote_average, revenue, genres, casts,reviews} = this.state.listing
-
+    const { id, poster_path, title, overview, release_date, runtime, vote_average, revenue, genres, casts,reviews} = this.state.listing.table
+    console.log(this.state.listing)
     let image = IMAGE_URL + poster_path;
     // console.log(video_url)
     return (
@@ -110,12 +110,13 @@ class ListingPage extends React.Component {
           <div>
           <h2> Genre: </h2>
             <ul className="casts">
-              {genres.map((genre, index) => <li key={index}>{genre.table.name}</li>)}
+              {/* {genres.map((genre, index) => <li key={index}>{genre.table.name}</li>)} */}
+              {genres}
             </ul>
 
             <h2>Casts: </h2>
             <ul className="casts">
-              {casts.map((cast, index) => <li key={index}>{cast}</li>)}
+              {casts? casts.map((cast, index) => <li key={index}>{cast}</li>) : ''}
             </ul>
           </div>
           </div>  
@@ -131,7 +132,7 @@ class ListingPage extends React.Component {
             <h2> Release date : {release_date}</h2>
             <h2> Runtime : {runtime} minutes</h2>
             <h2> Vote Average : {vote_average} </h2>
-            <h2> Revenue : {revenue.toLocaleString('en')} </h2>
+            <h2> Revenue : ${revenue.toLocaleString('en')} </h2>
             {/* Genre: <span className="font-weight-bold">{genres}</span>{' '} */}
             {/* <ReactPlayer url="https://www.youtube.com/watch?v=k71hjl3zWsA" controls={true}/> */}
             <ReactPlayer url={this.state.video_url} controls={true}/>
