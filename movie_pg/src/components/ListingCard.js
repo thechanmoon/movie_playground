@@ -25,7 +25,7 @@ class ListingCard extends React.Component {
     // this.setState({ favorite: !this.state.favorite })
   }
 
-  sliecTitle = (string) =>
+  sliceTitle = (string) =>
   {
     return (string.length <19 ? string : `${string.slice(0,18)}...`)
   }
@@ -50,7 +50,7 @@ class ListingCard extends React.Component {
           <span>★ {rating}</span>
         </div> */}
         <div  className="info">
-        <h4 className="title">{this.sliecTitle(title)}</h4>
+        <h4 className="title">{this.sliceTitle(title)}</h4>
         </div>
         {/* <div className="price">
           <strong>${price}</strong>/month

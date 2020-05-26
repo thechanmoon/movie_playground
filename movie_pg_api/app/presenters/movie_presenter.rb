@@ -17,7 +17,8 @@ class MoviePresenter
       release_date: @movie[:release_date],
       revenue: @movie[:revenue],
       vote_average: @movie[:vote_average],
-      videos: @movie['videos']
+      videos: @movie['videos'],
+      id: @movie[:id]
     )
   end
 end

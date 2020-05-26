@@ -45,6 +45,11 @@ class ReviewForm extends React.Component {
 
   fetchCreateMovie()
   {
+
+    console.log(this.state.currentMovie)
+
+    debugger
+
     const data = {
       title: this.state.currentMovie.title,
       poster_path: this.state.currentMovie.poster_path,
@@ -53,6 +58,8 @@ class ReviewForm extends React.Component {
       // comment: this.state.comment,
       // rating: this.state.rating
     }
+
+
 
     fetch(API_URL + `/movies`, {
     method: "POST",
@@ -66,7 +73,28 @@ class ReviewForm extends React.Component {
     .then(updatedListing => {
       // this.props.handleUpdateListing(updatedListing)
       // this.setState(initialState)
+      console.log(updatedListing);
+      console.log(updatedListing.id);
+      this.fetchCreateReview(updatedListing.id)
     })
+  }
+
+  fetchCreateReview(id)
+  {
+   fetch(API_URL + `/movies/${id}/reviews`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include",
+      body: JSON.stringify(this.state)
+    })
+      .then(r => r.json())
+      .then(updatedListing => {
+        // this.props.handleUpdateListing(updatedListing)
+        // this.setState(initialState)
+        this.props.fetchMovie()
+      })
   }
 
   render() {

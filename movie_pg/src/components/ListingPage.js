@@ -13,12 +13,19 @@ class ListingPage extends React.Component {
     listing: null,
     loaded: false,
     reviews: [],
-    video_url: ''
+    video_url: '',
+    currentMovie: {}
   }
 
   componentDidMount() {
+   this.fetchMovie()
+  }
+
+  fetchMovie = () =>
+  {
     console.log('ListingPage componentDidMount');
-    fetch(API_URL + `/api/${this.props.match.params.id}`, {
+    fetch(API_URL + `/apis/${this.props.match.params.id}`, {
+    // fetch(API_URL + `/apis/${tmdb_id}`, {
       credentials: "include"
     })
       .then(r => r.json())
@@ -37,11 +44,13 @@ class ListingPage extends React.Component {
         this.setState({
           listing: listing,
           loaded: true,
-          video_url: listing.table.videos && listing.table.videos.length>0?'https://www.youtube.com/watch?v='+listing.table.videos[0] : ''
+          video_url: listing.movie.table.videos && listing.movie.table.videos.length>0?'https://www.youtube.com/watch?v='+listing.movie.table.videos[0] : '',
+          reviews: listing.reviews,
+          currentMovie: listing.movie.table
         })
         console.log(listing);    
         console.log(listing.id);       
-        this.fetchSearchReviews(listing.id);        
+        // this.fetchSearchReviews(listing.id);        
       })
   }
 
@@ -94,8 +103,11 @@ class ListingPage extends React.Component {
       return <LoadingSpinner />
     }
 
-    const { id, poster_path, title, overview, release_date, runtime, vote_average, revenue, genres, casts,reviews} = this.state.listing.table
+    const { id, poster_path, title, overview, release_date, runtime, vote_average, revenue, genres, casts} = this.state.listing.movie.table;
+    const reviews = this.state.listing.reviews
     console.log(this.state.listing)
+    console.log(this.state.listing.reviews)
+    console.log(reviews)
     let image = IMAGE_URL + poster_path;
     // console.log(video_url)
     return (
@@ -149,16 +161,16 @@ class ListingPage extends React.Component {
             { <JournalForm listingId={id} handleUpdateListing={this.handleUpdateListing} /> }
           </div>
 
-          <div className="reviews">
-              {/* <h4>
-                <span className="rating">★</span>
-                &nbsp;
-                <span>{rating} ({reviews.length} reviews)</span>
-                <span>{5} ({5} reviews)</span>
-              </h4> */}
-              {/* {{reviews.map(review => <Review key={review.id} {...review} />)} } */}
+            <div className="reviews">
+                {/* <h4>
+                  <span className="rating">★</span>
+                  &nbsp;
+                  <span>{rating} ({reviews.length} reviews)</span>
+                  <span>{5} ({5} reviews)</span>
+                </h4> */}
+                {reviews? reviews.map(review => <Review key={review.id} {...review} />):''} 
+                { <ReviewForm listingId={id} currentMovie = {this.state.listing.movie.table} handleUpdateListing={this.handleUpdateListing} fetchMovie = {this.fetchMovie}/> }
             </div>
-            { <ReviewForm listingId={id} currentMovie = {this.state.listing.table} handleUpdateListing={this.handleUpdateListing} /> }
           </div>
 
 

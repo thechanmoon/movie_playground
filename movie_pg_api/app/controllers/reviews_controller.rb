@@ -14,8 +14,8 @@ class ReviewsController < ApplicationController
     end
 
     def create
-		byebug
-		movie = Movie.find_or_create_by(create_review_params)
+		# byebug
+		movie = Movie.find_or_create_by(tmdb_id: params["currentMovie"]["id"])
 		# if movie.valid?
 		#   render json: movie
 		# else
@@ -25,7 +25,7 @@ class ReviewsController < ApplicationController
         # byebug
         #byebug
         review = Review.create(comment: params[:comment], rating: params[:rating], movie_id: movie.id, user_id: current_user.id)
-        byebug
+        # byebug
         if movie.valid? && review.valid?
             render json: { movie: movie, review: review }
         else

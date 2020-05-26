@@ -1,4 +1,4 @@
-class ApiController < ApplicationController
+class ApisController < ApplicationController
     def index     
 
         # byebug
@@ -40,8 +40,22 @@ class ApiController < ApplicationController
         
         movie[:image_path] = "#{image_path}/w300_and_h450_bestv2#{movie.poster_path}"
 
-
-        render json: movie
+		movie_having_review = Movie.find_by(tmdb_id: movie.id);
+		# if movie.valid?
+		#   render json: movie
+		# else
+		#   render json: { errors: movie.errors.full_messages }, status: 403
+        # end
+        
+        # byebug
+        #byebug
+        if movie_having_review && movie_having_review.valid?
+            reviews = Review.where(movie_id: movie_having_review.id)
+            render json: { movie: movie, reviews: reviews } 
+        else
+            render json: { movie: movie }   
+        end
+        # render json: movie
 
         # movie = Movie.find(params[:id])
         # byebug

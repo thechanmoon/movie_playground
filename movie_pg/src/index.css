@@ -235,10 +235,12 @@ main {
 }
 
 .detail .journals {
+  width: 100%;
   border-bottom: 1px solid var(--gray);
 }
 
 .detail .reviews {
+  width: 100%;
   border-bottom: 1px solid var(--gray);
 }
 
