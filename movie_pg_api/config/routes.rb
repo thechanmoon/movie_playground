@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   
   resources :movies do
     resources :reviews
+    resources :journals
     # search "/reviews/search", to: "reviews/search"
     resources :favorites    
     delete "/favorites/remove", to: "favorites#destroy"

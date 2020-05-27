@@ -33,8 +33,13 @@ class ApisController < ApplicationController
         
         # movie = Tmdb::Movie.detail(params[:id])
 
-        movie = movie_service.movie_detail(params[:id])
-        p movie
+        # movie = movie_service.movie_detail(params[:id])
+        # p movie
+
+        # reviews = movie_service.reviews(params[:id])
+        # p reviews
+
+        # byebug
         # render json: movie
 
         movie = MoviePresenter.new(movie_detail).data
@@ -44,7 +49,7 @@ class ApisController < ApplicationController
 
         movie[:image_path] = "#{image_path}/w300_and_h450_bestv2#{movie.poster_path}"
 
-        movie_having_review = Movie.find_by(tmdb_id: movie.id);
+        # movie_having_review = Movie.find_by(tmdb_id: movie.id);
 		# if movie.valid?
 		#   render json: movie
 		# else
@@ -53,25 +58,36 @@ class ApisController < ApplicationController
         
         # byebug
         #byebug
-        if movie_having_review && movie_having_review.valid?
-            reviews = Review.where(movie_id: movie_having_review.id)
- 
- 
-            # byebug
 
-            extra = reviews.map { |review| 
+        # if movie_having_review && movie_having_review.valid?
+        #     reviews = Review.where(movie_id: movie_having_review.id)
+ 
+ 
+        #     # byebug
+
+        #     extra = reviews.map { |review| 
                 
-                # review.username = review.user.username 
-                # review[:username] = review.user.username;
-                { username: review.user.username, created_at: review.created_at.strftime("%B %Y")}
-            }
+        #         # review.username = review.user.username 
+        #         # review[:username] = review.user.username;
+        #         { username: review.user.username, created_at: review.created_at.strftime("%B %Y")}
+        #     }
 
-            # render json: ApiSerializer.new(movie)
-            render json: { movie: movie, reviews: reviews, extra: extra } 
-            # render json: { movie: movie, reviews: serializer: ReviewSerializer } 
-        else
-            render json: { movie: movie }   
-        end
+        #     # render json: ApiSerializer.new(movie)
+        #     # render json: { movie: movie, reviews: reviews, extra: extra } 
+        #     reviews = movie_service.reviews(params[:id])
+        #     render json: { movie: movie, reviews: reviews} 
+        #     # render json: { movie: movie, reviews: serializer: ReviewSerializer } 
+        # else
+        #     render json: { movie: movie }   
+        # end
+
+
+        exist_movie = Movie.find_by(tmdb_id: movie.id);
+        journals = Journal.where(movie_id: exist_movie.id)
+        # byebug
+        reviews = movie_service.reviews(params[:id])
+        render json: { movie: movie, reviews: reviews, journals:journals} 
+
         # render json: movie
 
         # movie = Movie.find(params[:id])

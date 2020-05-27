@@ -43,6 +43,10 @@ class MovieDbService
     @tmdb.find(keyword) if keyword
   end
 
+  def reviews(id)
+    @tmdb.reviews(id)
+  end
+
   private
 
   def casts_for(movie)

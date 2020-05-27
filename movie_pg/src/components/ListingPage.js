@@ -44,13 +44,13 @@ class ListingPage extends React.Component {
 
         // listing.reviews = {...listing.reviews, ...listing.extra}
 
-        for(let i = 0; i < listing.reviews.length; i++)
-        {
-          // let newObj =  {...listing.reviews[i], ...listing.extra[i]}
-          // console.log(newObj)
-          // listing.reviews[i] = newObj;
-          listing.reviews[i] = {...listing.reviews[i], ...listing.extra[i]}
-        }
+        // for(let i = 0; listing.reviews &&  i < listing.reviews.length; i++)
+        // {
+        //   // let newObj =  {...listing.reviews[i], ...listing.extra[i]}
+        //   // console.log(newObj)
+        //   // listing.reviews[i] = newObj;
+        //   listing.reviews[i] = {...listing.reviews[i], ...listing.extra[i]}
+        // }
 
 
         console.log(listing.reviews)
@@ -119,6 +119,7 @@ class ListingPage extends React.Component {
 
     const { id, poster_path, title, overview, release_date, runtime, vote_average, revenue, genres, casts} = this.state.listing.movie.table;
     const reviews = this.state.listing.reviews
+    const journals = this.state.listing.journals
     console.log(this.state.listing)
     console.log(this.state.listing.reviews)
     console.log(reviews)
@@ -173,8 +174,8 @@ class ListingPage extends React.Component {
  
 
             <div className="journals">
-              {/* {{journals.map(journal => <Journal key={journal.id} {...journal} />)} } */}
-              { <JournalForm listingId={id} handleUpdateListing={this.handleUpdateListing} /> }
+              {journals && journals.map(journal => <Journal key={journal.id} {...journal} />) }
+              { <JournalForm listingId={id}  currentMovie = {this.state.listing.movie.table} handleUpdateListing={this.handleUpdateListing} fetchMovie = {this.fetchMovie}/> }
             </div>
 
             <div className="reviews">
@@ -184,8 +185,9 @@ class ListingPage extends React.Component {
                   <span>{rating} ({reviews.length} reviews)</span>
                   <span>{5} ({5} reviews)</span>
                 </h4> */}
-                {reviews? reviews.map(review => <Review key={review.id} {...review} />):''} 
-                { <ReviewForm listingId={id} currentMovie = {this.state.listing.movie.table} handleUpdateListing={this.handleUpdateListing} fetchMovie = {this.fetchMovie}/> }
+                <h2>{reviews && reviews.table.results.length>0 ? 'Reviews':''}</h2>
+                {reviews? reviews.table.results.map(review => <Review key={review.id} {...review} />):''} 
+                {/* { <ReviewForm listingId={id} currentMovie = {this.state.listing.movie.table} handleUpdateListing={this.handleUpdateListing} fetchMovie = {this.fetchMovie}/> } */}
             </div>
 
        

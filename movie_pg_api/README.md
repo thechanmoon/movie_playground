@@ -33,6 +33,8 @@ rails d resource journal title text user_id movie_id --no-test-framework
 
 rails g controller api --no-test-framework
 
+rails g migration add_watch_date_to_journal watch_date datetime
+
 <!-- rails g scaffold User username email first_name last_name password_digest imageurl --no-test-framework -->
 
 * How to run the test suite
