@@ -16,7 +16,7 @@ class ApisController < ApplicationController
             movies = movie_service.popular
         end
         # byebug
-        render json: movies.results;
+        render json: movies.results, adapter:nil;
         # render json: movies, serializer: ApiSerializer
     end
 
@@ -120,7 +120,7 @@ class ApisController < ApplicationController
         # byebug
         search = Tmdb::Search.movie(params[:query])
         p search
-        render json: search.results
+        render json: search.results , adapter:nil;
     end
 
     private
