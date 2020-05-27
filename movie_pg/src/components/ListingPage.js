@@ -40,6 +40,20 @@ class ListingPage extends React.Component {
         // https://www.youtube.com/watch?v=1FgHYjtymQY // // once upon a time in america full movie
         // https://www.youtube.com/watch?v=Z6Lt8umAStg// conspiracy
 
+        // console.log(listing.reviews)
+
+        // listing.reviews = {...listing.reviews, ...listing.extra}
+
+        for(let i = 0; i < listing.reviews.length; i++)
+        {
+          // let newObj =  {...listing.reviews[i], ...listing.extra[i]}
+          // console.log(newObj)
+          // listing.reviews[i] = newObj;
+          listing.reviews[i] = {...listing.reviews[i], ...listing.extra[i]}
+        }
+
+
+        console.log(listing.reviews)
 
         this.setState({
           listing: listing,
@@ -113,24 +127,24 @@ class ListingPage extends React.Component {
     return (
       <div className="detail">
         <div className='container'>
-          <div>
-          <div className="image" style={{ backgroundImage: `url(${image})` }}>
-            {/* <button onClick={this.toggleFavorite} className="favorite">
-              <span role="img" aria-label="heart">{favorite ? "♥️" : "♡"}</span>
-            </button> */}
-          </div>
-          <div>
-          <h2> Genre: </h2>
-            <ul className="casts">
-              {/* {genres.map((genre, index) => <li key={index}>{genre.table.name}</li>)} */}
-              {genres}
-            </ul>
+          <div className="detail-info">
+            <div className="image" style={{ backgroundImage: `url(${image})` }}>
+              {/* <button onClick={this.toggleFavorite} className="favorite">
+                <span role="img" aria-label="heart">{favorite ? "♥️" : "♡"}</span>
+              </button> */}
+            </div>
+            <div>
+            <h2> Genre: </h2>
+              <ul className="casts">
+                {/* {genres.map((genre, index) => <li key={index}>{genre.table.name}</li>)} */}
+                {genres}
+              </ul>
 
-            <h2>Casts: </h2>
-            <ul className="casts">
-              {casts? casts.map((cast, index) => <li key={index}>{cast}</li>) : ''}
-            </ul>
-          </div>
+              <h2>Casts: </h2>
+              <ul className="casts">
+                {casts? casts.map((cast, index) => <li key={index}>{cast}</li>) : ''}
+              </ul>
+            </div>
           </div>  
 
           <div className="detail-info">
@@ -156,10 +170,12 @@ class ListingPage extends React.Component {
       
       <div className="detail">
         <div className='container'>
-          <div className="journals">
-            {/* {{journals.map(journal => <Journal key={journal.id} {...journal} />)} } */}
-            { <JournalForm listingId={id} handleUpdateListing={this.handleUpdateListing} /> }
-          </div>
+ 
+
+            <div className="journals">
+              {/* {{journals.map(journal => <Journal key={journal.id} {...journal} />)} } */}
+              { <JournalForm listingId={id} handleUpdateListing={this.handleUpdateListing} /> }
+            </div>
 
             <div className="reviews">
                 {/* <h4>
@@ -171,10 +187,10 @@ class ListingPage extends React.Component {
                 {reviews? reviews.map(review => <Review key={review.id} {...review} />):''} 
                 { <ReviewForm listingId={id} currentMovie = {this.state.listing.movie.table} handleUpdateListing={this.handleUpdateListing} fetchMovie = {this.fetchMovie}/> }
             </div>
-          </div>
 
+       
 
-
+            </div>
         </div>
       </div>
     )

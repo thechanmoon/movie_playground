@@ -100,7 +100,7 @@ class ReviewForm extends React.Component {
   render() {
     const { comment, rating } = this.state
     return (
-      <div className="form-container">
+      <div className="form-container-wide">
         <h4>Leave a Review</h4>
         <form onSubmit={this.handleSubmit}>
           {/* <label>Comment:</label> */}

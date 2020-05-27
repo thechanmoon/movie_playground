@@ -189,8 +189,13 @@ main {
   align-items: flex-start;
 }
 
+/* .detail {
+  width: 100%;
+} */
+
 .detail .container {
   display: flex;
+  width: 100%;
 }
 
 .detail .container .detail-info {
@@ -198,7 +203,7 @@ main {
   /* margin-bottom: 10px;
   margin-right: 10px; */
   margin-left: 10px;
-  width: 50%;
+  width: 100%;
   /* width: 450px; */
 }
 
@@ -216,6 +221,8 @@ main {
   margin-bottom: 20px;
   margin-right: 20px;
   margin-left: 20px;
+
+  padding-right: 20%;
 
   /* margin-right: 150px; */
   /* position: relative;
@@ -235,11 +242,17 @@ main {
 }
 
 .detail .journals {
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
   width: 100%;
   border-bottom: 1px solid var(--gray);
 }
 
 .detail .reviews {
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
   width: 100%;
   border-bottom: 1px solid var(--gray);
 }
@@ -266,6 +279,60 @@ main {
 }
 
 /* Forms */
+.form-container-wide {
+  margin: 1rem auto;
+  max-width: 90%;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 0px 8px;
+  border-radius: 10px;
+}
+
+.form-container-wide form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container-wide form label {
+  font-size: 0.8rem;
+}
+
+.form-container-wide form input, 
+.form-container-wide form textarea, 
+.form-container-wide form select {
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem;
+  font-weight: bold;
+  border: none;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 2px;
+}
+
+.form-container-wide form input:focus, 
+.form-container-wide form textarea:focus, 
+.form-container-wide form select:focus {
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+
+.form-container-wide form input[type="submit"] {
+  width: 30%;
+  font-weight: 500;
+  background-color: var(--blue);
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.form-container-wide form input[type="submit"]:focus,
+.form-container-wide form input[type="submit"]:active {
+  outline: none;
+  transform: scale(0.95);
+}
+
 .form-container {
   margin: 1rem auto;
   max-width: 500px;

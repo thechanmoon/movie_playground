@@ -15,7 +15,9 @@ class ApisController < ApplicationController
             # movies = Tmdb::Movie.upcoming({region: 'us'})
             movies = movie_service.popular
         end
+        # byebug
         render json: movies.results;
+        # render json: movies, serializer: ApiSerializer
     end
 
         # Return datas of the movies
@@ -31,16 +33,18 @@ class ApisController < ApplicationController
         
         # movie = Tmdb::Movie.detail(params[:id])
 
-        # movie = movie_service.movie_detail(params[:id])
+        movie = movie_service.movie_detail(params[:id])
+        p movie
         # render json: movie
 
         movie = MoviePresenter.new(movie_detail).data
         
         # byebug
         
+
         movie[:image_path] = "#{image_path}/w300_and_h450_bestv2#{movie.poster_path}"
 
-		movie_having_review = Movie.find_by(tmdb_id: movie.id);
+        movie_having_review = Movie.find_by(tmdb_id: movie.id);
 		# if movie.valid?
 		#   render json: movie
 		# else
@@ -51,7 +55,20 @@ class ApisController < ApplicationController
         #byebug
         if movie_having_review && movie_having_review.valid?
             reviews = Review.where(movie_id: movie_having_review.id)
-            render json: { movie: movie, reviews: reviews } 
+ 
+ 
+            # byebug
+
+            extra = reviews.map { |review| 
+                
+                # review.username = review.user.username 
+                # review[:username] = review.user.username;
+                { username: review.user.username, created_at: review.created_at.strftime("%B %Y")}
+            }
+
+            # render json: ApiSerializer.new(movie)
+            render json: { movie: movie, reviews: reviews, extra: extra } 
+            # render json: { movie: movie, reviews: serializer: ReviewSerializer } 
         else
             render json: { movie: movie }   
         end

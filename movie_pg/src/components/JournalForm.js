@@ -37,7 +37,7 @@ class JournalForm extends React.Component {
   render() {
     const { comment, rating } = this.state
     return (
-      <div className="form-container">
+      <div className="form-container-wide">
         <h4>Write a Journal</h4>
         <form onSubmit={this.handleSubmit}>
           {/* <label>Comment:</label> */}
