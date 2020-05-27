@@ -84,7 +84,10 @@ class ApisController < ApplicationController
         # byebug
         exist_movie = Movie.find_by(tmdb_id: movie.id);
         if exist_movie
-            journals = Journal.where(movie_id: exist_movie.id)
+            journals = Journal.where(movie_id: exist_movie.id, user_id:current_user.id)
+
+            #user's journal check needed
+
             reviews = movie_service.reviews(params[:id])
             render json: { movie: movie, reviews: reviews, journals:journals} 
         else
