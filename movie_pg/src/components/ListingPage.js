@@ -174,6 +174,8 @@ class ListingPage extends React.Component {
  
 
             <div className="journals">
+             
+              <h2>{journals && journals.length>0 ? ' Journals':''}</h2>
               {journals && journals.map(journal => <Journal key={journal.id} {...journal} />) }
               { <JournalForm listingId={id}  currentMovie = {this.state.listing.movie.table} handleUpdateListing={this.handleUpdateListing} fetchMovie = {this.fetchMovie}/> }
             </div>
