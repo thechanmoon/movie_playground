@@ -1,7 +1,21 @@
 class MovieSerializer < ActiveModel::Serializer
-  attributes :id, :username, :title, :overview, :poster_path, :tmdb_id
+  attributes :id, :username, :title, :overview, :poster_path, :tmdb_id, :journals
   has_many :users
-  has_many :journals
+  # has_many :journals
+
+  def journals 
+    array = []
+    journals = Journal.where(movie_id: self.object.id)
+    
+    journals.each do |journal|
+      if current_user.id ==  journal.user_id
+        array.push(journal)
+      end
+    end
+    
+    return array
+  end
+
 end
 
 # class MovieSerializer < ActiveModel::Serializer

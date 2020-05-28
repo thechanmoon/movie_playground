@@ -43,7 +43,9 @@ class NavBar extends React.Component {
           <div className="logo" />
         </Link>
 
-        <a href={"/Journals"}>Journals</a>
+        <Link to="/Journals">
+          <button>Journals</button>
+        </Link>
 
         <select name = 'indexSelect' onChange = {this.handleIndexSelectChange}>
           <option value="popular">popular</option>

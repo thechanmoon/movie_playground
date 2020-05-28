@@ -3,6 +3,25 @@ class JournalsController < ApplicationController
         # byebug
         journals = Journal.all
         render json: journals;
+
+        # movies = Movie.all
+
+		# array = []
+		# movies.each do |movie|
+
+		# 	journals = Journal.where(movie_id: movie.id)
+		# 	b_add = false;
+		# 	journals.each do |journal|
+				
+		# 		if current_user.id ==  journal.user_id
+		# 		b_add = true;
+		# 		end
+		# 	end
+		# 	if b_add == true
+		# 		array.push(movie)
+		# 	end
+		# end
+		# render json: array;
     end
 
     def show
