@@ -39,12 +39,14 @@ const JournalList = () => {
   return (
     <div>
       JournalList
+      <section className="listings">
       {/* {movies? movies.map(movie=><div>{movie.title}</div>) : '' } */}
 
       {movies? movies.map(movie=><JournalItem key={movie.id} movie={movie} />) : '' }
 
       {/* My counter is {counter}; */}
       {/* <button onClick={increaseCounter}></button> */}
+      </section>
     </div>
   )
 }
