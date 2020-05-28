@@ -8,6 +8,9 @@ import SignupForm from './SignupForm';
 import JournalList from './JournalList';
 import ActorDetail from './ActorDetail';
 import { API_URL } from '../constants'
+import { connect } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
 //import logo from './logo.svg';
 //import './App.css';
 /*
@@ -24,6 +27,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    document.title = 'Movie Playground'
     fetch(API_URL + "/autologin", {
       credentials: "include"
     })
@@ -86,7 +90,34 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App);
+
+// mapStateToProps = returns whatever props we want added to our component
+const mapStateToProps = state => {
+  console.log("mSP", state)
+  return {
+    counter: state.counter,
+    paused: state.paused,
+    likedNumbers: state.likedNumbers,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    someFunc: () => dispatch({ type: "WHATEVER" }),
+    updateComment: (text) => dispatch({ type: "UPDATE_COMMENT", payload: text }),
+    togglePause: () => dispatch({ type: "TOGGLE_PAUSE" }),
+    increment: () => dispatch({ type: "INCREMENT" }),
+    decrement: () => dispatch({ type: "DECREMENT" }),
+    addComment: () => dispatch({ type: "ADD_COMMENT" }),
+    likeNumber: () => dispatch({ type: "LIKE_NUMBER" }),
+  }
+}
+
+// export default withRouter(App);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(App);
 
 // function App() {
 //   return (

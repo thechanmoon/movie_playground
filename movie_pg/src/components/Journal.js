@@ -5,13 +5,14 @@ const Journal = ({ username, watch_date, text }) => {
     <div>
       <div className="journal">
         <section>
-        <h5>{watch_date}</h5>
+        <h5>{watch_date.slice(0,10)}</h5>
         {/* <span className="date" class="active">{watch_date}</span> */}
         <p className="comment">{text}</p>
         <p>{"\n"}</p>
         </section>
       </div>
-    <div style={{ flexGrow: 0, flexBasis: '33.333%', }} >
+    <div>
+      <button> Edit</button>
       <button> Delete</button>
     </div>
     </div>
