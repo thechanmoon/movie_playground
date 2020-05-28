@@ -104,12 +104,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     someFunc: () => dispatch({ type: "WHATEVER" }),
-    updateComment: (text) => dispatch({ type: "UPDATE_COMMENT", payload: text }),
-    togglePause: () => dispatch({ type: "TOGGLE_PAUSE" }),
-    increment: () => dispatch({ type: "INCREMENT" }),
-    decrement: () => dispatch({ type: "DECREMENT" }),
-    addComment: () => dispatch({ type: "ADD_COMMENT" }),
-    likeNumber: () => dispatch({ type: "LIKE_NUMBER" }),
+    // updateComment: (text) => dispatch({ type: "UPDATE_COMMENT", payload: text }),
+    // togglePause: () => dispatch({ type: "TOGGLE_PAUSE" }),
+    // increment: () => dispatch({ type: "INCREMENT" }),
+    // decrement: () => dispatch({ type: "DECREMENT" }),
+    // addComment: () => dispatch({ type: "ADD_COMMENT" }),
+    // likeNumber: () => dispatch({ type: "LIKE_NUMBER" }),
   }
 }
 

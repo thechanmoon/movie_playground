@@ -43,6 +43,8 @@ class NavBar extends React.Component {
           <div className="logo" />
         </Link>
 
+        <div className="logo-playground" />
+        
         <Link to="/Journals">
           <button>Journals</button>
         </Link>
