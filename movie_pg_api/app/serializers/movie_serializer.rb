@@ -1,6 +1,7 @@
 class MovieSerializer < ActiveModel::Serializer
   attributes :id, :username, :title, :overview, :poster_path, :tmdb_id
-  has_many :reviews
+  has_many :users
+  has_many :journals
 end
 
 # class MovieSerializer < ActiveModel::Serializer

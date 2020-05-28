@@ -5,7 +5,8 @@ import ListingsContainer from './ListingsContainer';
 import ListingPage from './ListingPage';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
-import Recollection from './Recollection';
+import JournalList from './JournalList';
+import ActorDetail from './ActorDetail';
 import { API_URL } from '../constants'
 //import logo from './logo.svg';
 //import './App.css';
@@ -73,7 +74,8 @@ class App extends React.Component {
             <>
               {/* <Route path="/listings/search/:city" render={routeProps => <ListingsContainer {...routeProps} />} /> */}
               <Route path="/listings/:id" render={routeProps => <ListingPage {...routeProps} />} />
-              <Route path="/recollection" render={routeProps => <Recollection {...routeProps} />} />
+              <Route path="/journals" render={routeProps => <JournalList {...routeProps} />} />
+              <Route path="/actors/:id" render={routeProps => <ActorDetail  {...routeProps} />} />
               <Route exact path="/listings" render={routeProps => <ListingsContainer {...routeProps} searchTerm={this.state.searchTerm} indexTerm={this.state.indexTerm}/>} />
             </>
           )}

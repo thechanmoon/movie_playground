@@ -29,11 +29,13 @@ class ListingsContainer extends React.Component {
       // this.fetchListings()
       console.log(prevProps);
       console.log(this.props);
-
+      console.log(prevProps.searchTerm);
+      console.log(this.props.searchTerm);
       if(prevProps.searchTerm !== this.props.searchTerm)
       {
         this.setState({searchTerm: this.props.searchTerm})
         this.fetchSearchListings(this.props.searchTerm)
+        this.setState({searchTerm: '????'})
       }else if(prevProps.indexTerm !== this.props.indexTerm){
         this.setState({ indexTerm: this.props.indexTerm})
         this.fetchListings(this.props.indexTerm)
