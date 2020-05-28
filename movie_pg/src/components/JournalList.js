@@ -1,7 +1,7 @@
-import React, {userState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { API_URL, IMAGE_URL } from '../constants'
-
+import JournalItem from './JournalItem'
 const JournalList = () => {
 
   const movies = useSelector(state => state.movies)
@@ -39,7 +39,10 @@ const JournalList = () => {
   return (
     <div>
       JournalList
-      {movies? movies.map(movie=><div>{movie.title}</div>) : '' }
+      {/* {movies? movies.map(movie=><div>{movie.title}</div>) : '' } */}
+
+      {movies? movies.map(movie=><JournalItem key={movie.id} movie={movie} />) : '' }
+
       {/* My counter is {counter}; */}
       {/* <button onClick={increaseCounter}></button> */}
     </div>
@@ -47,3 +50,5 @@ const JournalList = () => {
 }
 
 export default JournalList
+
+// return listings.map(listing => <ListingCard key={listing.table.id} listing={listing} showDetail={this.showDetail} handleUpdateListing={this.handleUpdateListing}/>)
