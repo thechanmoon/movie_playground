@@ -144,7 +144,7 @@ class ListingPage extends React.Component {
               <h2>Casts: </h2>
               <ul className="casts">
                 {casts? casts.map((cast, index) => <li key={index}>
-                  <span><a href={'/actors'}class="active">{cast}</a></span>       
+                  <span><a href={'/actors'}>{cast}</a></span>       
                 </li>) : ''}
               </ul>
             </div>

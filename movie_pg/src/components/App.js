@@ -29,6 +29,7 @@ class App extends React.Component {
   componentDidMount() {
     document.title = 'Movie Playground'
     fetch(API_URL + "/autologin", {
+      mode: 'no-cors',
       credentials: "include"
     })
       .then(r => {

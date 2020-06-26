@@ -10,6 +10,7 @@ Dotenv::Railtie.load
 module MoviePgApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.hosts << "ec2-54-157-157-137.compute-1.amazonaws.com"
     config.load_defaults 6.0
 
     # Settings in config/environments/* take precedence over those specified here.

@@ -38,7 +38,7 @@ const JournalList = () => {
 
   return (
     <div>
-      JournalList
+      {/* JournalList */}
       <section className="listings">
       {/* {movies? movies.map(movie=><div>{movie.title}</div>) : '' } */}
 

@@ -1,11 +1,12 @@
+import { getMovies } from '../api/movie'
+
 export function fetchMoive() {
     return function (dispatch) {
       dispatch({ type: "FETCHING_MOVIE" })
   
-      getRandomMOVIE()
+      getMovies()
         .then(movie => {
-          const movieWithPosition = { ...movie, position: [lat, lng] }
-          dispatch({ type: "SET_MOVIES", payload: movieWithPosition })
+          dispatch({ type: "SET_MOVIES", payload: movie })
         })
         .catch(err => {
           dispatch({ type: "FETCHING_MOVIE_ERROR" })
