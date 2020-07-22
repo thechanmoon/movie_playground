@@ -65,6 +65,7 @@ class App extends React.Component {
 
     return( 
     <>
+      Movie app
       <NavBar
         handleUpdateCurrentUser={this.handleUpdateCurrentUser}
         handleUpdateSearch={this.handleUpdateSearch}
@@ -78,7 +79,6 @@ class App extends React.Component {
           <Route path="/signup" render={routeProps => <SignupForm {...routeProps} handleUpdateCurrentUser={this.handleUpdateCurrentUser} />} />
           {this.state.currentUser && (
             <>
-              {/* <Route path="/listings/search/:city" render={routeProps => <ListingsContainer {...routeProps} />} /> */}
               <Route path="/listings/:id" render={routeProps => <ListingPage {...routeProps} />} />
               <Route path="/journals" render={routeProps => <JournalList {...routeProps} />} />
               <Route path="/actors/:id" render={routeProps => <ActorDetail  {...routeProps} />} />
