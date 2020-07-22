@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { API_URL, IMAGE_URL } from '../constants'
+// import { API_URL, IMAGE_URL } from '../constants'
+import { API_URL} from '../constants'
 import JournalItem from './JournalItem'
 const JournalList = () => {
 
@@ -15,15 +16,6 @@ const JournalList = () => {
 
   console.log(movies)
 
-  // const [counter, setCounter] = userState(0)
-  const dispatch = useDispatch()
-
-  useEffect(()=>{
-    // document.title = `Counter is' ${counter}`;
-    console.log('useEffect')
-    fetchListings()
-  },[])
-
   const fetchListings = ()=>{
 
     let url = API_URL + `/movies`;
@@ -35,6 +27,17 @@ const JournalList = () => {
       .then(r => r.json())
       .then(data => dispatch({ type: "SET_MOVIES", payload: data }))
   }
+
+  // const [counter, setCounter] = userState(0)
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    // document.title = `Counter is' ${counter}`;
+    // console.log('useEffect')
+    fetchListings()
+  })
+
+
 
   return (
     <div>

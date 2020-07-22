@@ -2,7 +2,7 @@ import React from 'react'
 import LoadingSpinner from './LoadingSpinner'
 import JournalForm from './JournalForm'
 import Journal from './Journal'
-import ReviewForm from './ReviewForm'
+// import ReviewForm from './ReviewForm'
 import Review from './Review'
 import { API_URL, IMAGE_URL } from '../constants'
 import ReactPlayer from 'react-player';

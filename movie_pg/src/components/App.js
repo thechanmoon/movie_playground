@@ -9,8 +9,9 @@ import JournalList from './JournalList';
 import ActorDetail from './ActorDetail';
 import { API_URL } from '../constants'
 import { connect } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
+// import { createStore, applyMiddleware, compose } from 'redux'
+import { compose } from 'redux'
+// import thunk from 'redux-thunk'
 //import logo from './logo.svg';
 //import './App.css';
 /*
