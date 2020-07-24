@@ -176,7 +176,7 @@ class ListingsContainer extends React.Component {
 
     return (
       <>
-        Movie
+        {/* Movie */}
         {/* <FilterBar
           handleFourStarFilter={this.handleFourStarFilter}
           showMap={this.state.showMap}

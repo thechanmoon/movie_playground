@@ -11,6 +11,8 @@ User.destroy_all
 # Movie.destroy_all
 puts "Your data is destroyed"
 
+User.create(username:'tiburon', email: Faker::Internet.email, password: '1234', first_name: 'tiburon', last_name: 'special', imageurl: "https://dl.airtable.com/.attachmentThumbnails/1ee9b5b0a9245281bd7857835ef256d8/ebb993b2" )
+
 10.times do
     User.create(username:Faker::Name.first_name.downcase, email: Faker::Internet.email, password: '1234', first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, imageurl: "https://dl.airtable.com/.attachmentThumbnails/1ee9b5b0a9245281bd7857835ef256d8/ebb993b2" )
 end

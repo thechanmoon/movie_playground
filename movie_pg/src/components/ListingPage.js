@@ -2,7 +2,7 @@ import React from 'react'
 import LoadingSpinner from './LoadingSpinner'
 import JournalForm from './JournalForm'
 import Journal from './Journal'
-import ReviewForm from './ReviewForm'
+// import ReviewForm from './ReviewForm'
 import Review from './Review'
 import { API_URL, IMAGE_URL } from '../constants'
 import ReactPlayer from 'react-player';
@@ -144,7 +144,7 @@ class ListingPage extends React.Component {
               <h2>Casts: </h2>
               <ul className="casts">
                 {casts? casts.map((cast, index) => <li key={index}>
-                  <span><a href={'/actors'}class="active">{cast}</a></span>       
+                  <span><a href={'/actors'}>{cast}</a></span>       
                 </li>) : ''}
               </ul>
             </div>

@@ -85,7 +85,8 @@ class JournalForm extends React.Component {
  
 
   render() {
-    const { text, rating, date } = this.state
+    // const { text, rating, date } = this.state
+    const { text, date } = this.state
     return (
       <div className="form-container-wide">
         <h4>Write a Journal</h4>

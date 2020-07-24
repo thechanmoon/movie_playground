@@ -9,8 +9,9 @@ import JournalList from './JournalList';
 import ActorDetail from './ActorDetail';
 import { API_URL } from '../constants'
 import { connect } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
+// import { createStore, applyMiddleware, compose } from 'redux'
+import { compose } from 'redux'
+// import thunk from 'redux-thunk'
 //import logo from './logo.svg';
 //import './App.css';
 /*
@@ -29,6 +30,7 @@ class App extends React.Component {
   componentDidMount() {
     document.title = 'Movie Playground'
     fetch(API_URL + "/autologin", {
+      mode: 'no-cors',
       credentials: "include"
     })
       .then(r => {
@@ -76,7 +78,6 @@ class App extends React.Component {
           <Route path="/signup" render={routeProps => <SignupForm {...routeProps} handleUpdateCurrentUser={this.handleUpdateCurrentUser} />} />
           {this.state.currentUser && (
             <>
-              {/* <Route path="/listings/search/:city" render={routeProps => <ListingsContainer {...routeProps} />} /> */}
               <Route path="/listings/:id" render={routeProps => <ListingPage {...routeProps} />} />
               <Route path="/journals" render={routeProps => <JournalList {...routeProps} />} />
               <Route path="/actors/:id" render={routeProps => <ActorDetail  {...routeProps} />} />
@@ -104,12 +105,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     someFunc: () => dispatch({ type: "WHATEVER" }),
-    updateComment: (text) => dispatch({ type: "UPDATE_COMMENT", payload: text }),
-    togglePause: () => dispatch({ type: "TOGGLE_PAUSE" }),
-    increment: () => dispatch({ type: "INCREMENT" }),
-    decrement: () => dispatch({ type: "DECREMENT" }),
-    addComment: () => dispatch({ type: "ADD_COMMENT" }),
-    likeNumber: () => dispatch({ type: "LIKE_NUMBER" }),
+    // updateComment: (text) => dispatch({ type: "UPDATE_COMMENT", payload: text }),
+    // togglePause: () => dispatch({ type: "TOGGLE_PAUSE" }),
+    // increment: () => dispatch({ type: "INCREMENT" }),
+    // decrement: () => dispatch({ type: "DECREMENT" }),
+    // addComment: () => dispatch({ type: "ADD_COMMENT" }),
+    // likeNumber: () => dispatch({ type: "LIKE_NUMBER" }),
   }
 }
 

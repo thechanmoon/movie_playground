@@ -10,7 +10,8 @@ const JournalItem = (props) => {
 
   // destructuring the props object (we could also do the destructuring directly to the argument of the ListingCard fn)
   // const { image, name, city, rating, price } = this.props
-  const { id, poster_path, title, journals } = props.movie
+  // const { id, poster_path, title, journals } = props.movie
+  const { poster_path, title, journals } = props.movie
   // poster_path = "https://image.tmdb.org/t/p/w300"+poster_path;
   let image = IMAGE_URL + poster_path;
 

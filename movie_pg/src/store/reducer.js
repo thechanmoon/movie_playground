@@ -65,7 +65,11 @@ export const reducer = (state = defaultState, action) => {
         movies: action.payload
       }
       
-      
+    case "FETCH_MOVIES":
+      return {
+        ...state,
+        movies: action.payload
+      }  
 
     default:
       return state

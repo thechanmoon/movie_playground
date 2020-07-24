@@ -87,6 +87,15 @@ header .logo {
   background-repeat: no-repeat;
 }
 
+header .logo-playground {
+  width: 345px;
+  height: 60px;
+  background-image: url(./images/logo_playground.png);
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
 header .search {
   width: 25%;
   border-radius: 10px;
