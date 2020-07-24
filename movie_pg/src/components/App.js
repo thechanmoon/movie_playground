@@ -65,7 +65,6 @@ class App extends React.Component {
 
     return( 
     <>
-      Movie app
       <NavBar
         handleUpdateCurrentUser={this.handleUpdateCurrentUser}
         handleUpdateSearch={this.handleUpdateSearch}

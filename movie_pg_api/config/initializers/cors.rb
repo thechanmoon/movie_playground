@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'thechanmoon.github.io', 'movie-pg.herokuapp.com'
+    origins 'thechanmoon.github.io', 'movie-pg.herokuapp.com','moviepg.herokuapp.com', '73.43.141.118','73.43.141.118:3000', 'localhost:3000'
     # origins 'movie-pg.herokuapp.com'
 
     resource '*',
