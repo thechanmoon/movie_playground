@@ -13,16 +13,18 @@ import React from 'react'
 // }
 
 const Review = (props) => {
-
-  console.log(props)
-  return (
-    <div className="review">
-      <h5>{props.table.author}</h5>
-      {/* <span className="date">{props.table.url}</span> */}
-      <span className="comment"><a href={props.table.url}class="active">{props.table.url}</a></span>
-      {/* <p className="comment">{props.table.content}</p> */}
-    </div>
-  )
+	console.log(props)
+	return (
+		<div className="review">
+			<h5>{props.table.author}</h5>
+			{/* <span className="date">{props.table.url}</span> */}
+			{/* <span className="comment"><a href={props.table.url}class="active">{props.table.url}</a></span> */}
+			<span className="comment">
+				<a href={props.table.url}>{props.table.url}</a>
+			</span>
+			{/* <p className="comment">{props.table.content}</p> */}
+		</div>
+	)
 }
 
 export default Review
